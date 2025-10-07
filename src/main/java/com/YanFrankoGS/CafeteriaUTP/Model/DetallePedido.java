@@ -1,6 +1,8 @@
 package com.YanFrankoGS.CafeteriaUTP.Model;
 
 
+import java.math.BigDecimal;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,19 +24,20 @@ import lombok.Setter;
 @Entity
 @Table(name = "detalle_pedidos")
 public class DetallePedido {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long idDetallePedido;
+    private Long idDetallePedido;
 
     @ManyToOne
     @JoinColumn(name = "idPedido", nullable = false)
-    Pedido idPedido;
+    private Pedido pedido;
 
     @ManyToOne
     @JoinColumn(name = "idMenu", nullable = false)
-    Menus idMenu;
+    private Menus menu;
 
-    int cantidad;
-    double subtotal;
+    private int cantidad;
 
+    private BigDecimal subtotal;
 }

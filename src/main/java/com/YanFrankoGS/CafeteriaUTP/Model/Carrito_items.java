@@ -1,46 +1,39 @@
 package com.YanFrankoGS.CafeteriaUTP.Model;
 
-
-import java.util.List;
-
-
-
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
-@AllArgsConstructor
 @Getter
 @Setter
+@AllArgsConstructor
 @NoArgsConstructor
 
-
+@Table(name = "carrito_items")
 @Entity
-@Table(name = "carritos")
-public class Carrito {
+
+public class Carrito_items {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idCarrito;
-    
+    Long idCarrito_items;
+
     @ManyToOne
-    @JoinColumn(name = "idUsuario", nullable = false)
-    Usuario usuario;
+    @JoinColumn(name = "idCarrito", nullable = false)
+    Carrito carrito;
 
-    @OneToMany(mappedBy = "carrito", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Carrito_items> items;
+    @ManyToOne
+    @JoinColumn(name = "idMenu", nullable = false)
+    Menus menu;
 
-    
-
+    int cantidad;
+    double subtotal;
 
 }
